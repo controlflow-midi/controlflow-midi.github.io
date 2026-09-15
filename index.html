@@ -39,6 +39,11 @@
   .kind { color: var(--muted); font-size: .8rem; }
   .note { color: var(--muted); font-size: .8rem; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.25rem; margin: 1.25rem 0; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+  .cards .card { margin: 0; display: flex; flex-direction: column; }
+  .cards .card p:last-child { margin-top: auto; padding-top: .5rem; }
+  .pick { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); font-weight: 600; }
+  h4 { font-size: 1.1rem; margin: .15rem 0 .4rem; }
   .card p:first-child { margin-top: 0; }
   .card p:last-child { margin-bottom: 0; }
   ol, ul { padding-left: 1.25rem; }
@@ -60,18 +65,66 @@
     hand or check what a control is bound to.</p>
   </div>
 
-  <h2>How to map a control</h2>
-  <ol>
-    <li>Connect Control Flow to your host over Bluetooth MIDI.</li>
-    <li>In the host, start MIDI Learn on the parameter you want to control.</li>
-    <li>Move or tap the control in Control Flow.</li>
-    <li>The host binds it. Repeat per control.</li>
-  </ol>
+  <h2>Downloadable mappings</h2>
+
+  <section>
+    <h3>djay Pro</h3>
+    <p class="blurb">Two versions. Both cover all 138 controls, grouped by block and split
+    by deck &mdash; the difference is whether the actions are filled in.</p>
+
+    <div class="cards">
+      <div class="card">
+        <p class="pick">Pick this if you want to play now</p>
+        <h4>Full Map</h4>
+        <p>Every control assigned to something sensible. Load it, connect, and the app
+        drives djay Pro straight away.</p>
+        <p><a href="maps/djay-pro/control-flow-full-map.djayMidiMapping" download><strong>Download Full Map</strong></a></p>
+      </div>
+
+      <div class="card">
+        <p class="pick">Pick this if you want your own assignments</p>
+        <h4>Blank Grid</h4>
+        <p>Every control already collected and assigned to a deck, with the actions left
+        empty. Skips the tedious part &mdash; firing 138 controls one at a time to populate
+        the grid &mdash; and leaves the interesting part to you.</p>
+        <p><a href="maps/djay-pro/control-flow-blank-grid.djayMidiMapping" download><strong>Download Blank Grid</strong></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h3>Serato DJ Pro</h3>
+    <p class="blurb">A starting point, not a finished map. Hand-built and known to work
+    for what it covers &mdash; published early so testers have something to load.</p>
+
+    <div class="cards">
+      <div class="card">
+        <p class="pick">Pick this if you want a head start</p>
+        <h4>Starter Map</h4>
+        <p>40 controls, every one matching the reference below and on the channel for its
+        deck. Covers the Pads, stem Solo, FX Parameter A and slot on/off, and deck 1&rsquo;s
+        XY trigger buttons.</p>
+        <p><a href="maps/serato/control-flow-serato.xml" download><strong>Download Starter Map</strong></a></p>
+      </div>
+
+      <div class="card">
+        <h4>What it leaves to you</h4>
+        <p>The XY axes, stem volume and FX send, stem Mute and FX enable, FX Parameter B,
+        the effect-select buttons, and deck 2&rsquo;s XY triggers are all unassigned &mdash;
+        every address for them is in the reference below.</p>
+      </div>
+    </div>
+
+    <p class="blurb">Serato keeps its MIDI mappings in
+    <code>~/Music/_Serato_/MIDI/xml/</code> &mdash; that is where this file was exported
+    from. Check Serato&rsquo;s own documentation for how it expects mappings to be
+    installed and selected.</p>
+  </section>
 
   <h2>MIDI reference</h2>
   <p>Deck 1 sends on channel 1, deck 2 on channel 2. Every control also has its own
   unique CC or note number, so decks stay distinct even in hosts that ignore the channel
-  entirely — <strong>djay Pro is one of them</strong>, and identifies controls by number alone.</p>
+  entirely &mdash; <strong>djay Pro is one of them</strong>, and identifies controls by number alone.</p>
   <p>CC and note are independent 0&ndash;127 spaces, so a CC 30 and a note 30 are different
   addresses.</p>
 
@@ -260,24 +313,6 @@
     </table>
   </div>
 </section>
-
-  <h2>Downloadable mappings</h2>
-
-  <section>
-    <h3>djay Pro</h3>
-    <p class="blurb">A ready-made mapping, so you don't have to MIDI-Learn every control by hand.</p>
-    <div class="card">
-      <p><a href="maps/djay-pro/control-flow-djay-pro.djayMidiMapping" download><strong>Download the djay Pro mapping</strong></a></p>
-      <!-- INSTALL-STEPS: replace with the real djay Pro import steps -->
-      <ol>
-        <li>Download the file above.</li>
-        <li>Import it in djay Pro.</li>
-        <li>Connect Control Flow over Bluetooth MIDI and select the mapping.</li>
-      </ol>
-      <p class="blurb">Anything the mapping doesn't cover, you can still MIDI-Learn
-      yourself using the table above.</p>
-    </div>
-  </section>
 
   <footer>
     <p>Control Flow is an independent app. djay Pro, Serato, and Ableton Live are
